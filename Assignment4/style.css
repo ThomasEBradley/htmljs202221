@@ -1,6 +1,7 @@
 body{
     display: flex;
     justify-content: center;
+    background-color: #c11f08;
 }
 
 #container{
@@ -20,6 +21,7 @@ article{
     width: 100%;
     height: 300px;
     border: 1px solid black;
+    background-color: #7ed3f2;
 
 }
 footer{
