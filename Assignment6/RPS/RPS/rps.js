@@ -1,4 +1,5 @@
-
+var canvas = document.getElementById("c")
+var ctx = canvas.getContext("2d")
 
 //Array of words
 var rps = [];
@@ -32,24 +33,33 @@ function play(pChoice)
 {
     var cChoice = Math.floor(Math.random()*2.999999)
     
-    alert(rps[pChoice] + " " + rps[cChoice]) 
+    //alert(rps[pChoice] + " " + rps[cChoice])
+
+
+
+ctx.font = "40px Arial"
+ctx.fillStyle = "purple"
+ctx.strokeStyle = "yellow"
+ctx.fillText(rps[pChoice] + " " + rps[cChoice], 200, 280)
+
+
 
     switch(pChoice){
         case 0:
             if(cChoice === 0)
             {
                 //display a tie
-                alert(`You Tied`)
+                ctx.fillText("You tied!", 200, 260)
             }
             else if(cChoice === 1)
             {
                 //display a loss
-                alert(`You Lost`)
+                ctx.fillText("You lost!", 200, 260)
             }
             else
             {
                 //display a win
-                alert(`You Won`)
+                ctx.fillText("You won!", 200, 260)
             }
             break;
 
@@ -57,17 +67,17 @@ function play(pChoice)
                 if(cChoice === 0)
                 {
                     //display a tie
-                    alert(`You Win`)
+                    ctx.fillText("You tied!", 200, 260)
                 }
                 else if(cChoice === 1)
                 {
                     //display a loss
-                    alert(`Tie`)
+                    ctx.fillText("You lost!", 200, 260)
                 }
                 else
                 {
                     //display a win
-                    alert(`You Lost`)
+                    ctx.fillText("You won!", 200, 260)
                 } 
             break;
 
@@ -75,17 +85,17 @@ function play(pChoice)
                 if(cChoice === 0)
                 {
                     //display a tie
-                    alert(`You Lost`)
+                    ctx.fillText("You tied!", 200, 260)
                 }
                 else if(cChoice === 1)
                 {
                     //display a loss
-                    alert(`You Win`)
+                    ctx.fillText("You lost!", 200, 260)
                 }
                 else
                 {
                     //display a win
-                    alert(`You Tie`)
+                    ctx.fillText("You won!", 200, 260)
                 }
              break;
     }
