@@ -34,13 +34,13 @@ function play(pChoice)
     var cChoice = Math.floor(Math.random()*2.999999)
     
     //alert(rps[pChoice] + " " + rps[cChoice])
-
+ctx.clearRect(0, 0, canvas.width, canvas.height)
 
 
 ctx.font = "40px Arial"
 ctx.fillStyle = "purple"
 ctx.strokeStyle = "yellow"
-ctx.fillText(rps[pChoice] + " " + rps[cChoice], 200, 280)
+ctx.fillText(rps[pChoice] + " " + rps[cChoice], 200, 220)
 
 
 
