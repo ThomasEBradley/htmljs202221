@@ -3,6 +3,7 @@ var canvas = document.getElementById("c")
 var ctx = canvas.getContext("2d")
 
 //create instances for images RPS
+var rockpaperscissors = new Image()
 var rock = new Image()
 var paper = new Image()
 var scissors = new Image()
@@ -10,6 +11,7 @@ var hrock = new Image()
 var hpaper = new Image()
 var hscissors = new Image()
 
+rockpaperscissors.src = "images/rockpaperscissors.jpg"
 rock.src = "images/rock.jpg"
 paper.src = "images/paper.jpg"
 scissors.src = "images/scissors.jpg"
@@ -19,7 +21,7 @@ hscissors.src = "images/scissors2.jpg"
 
 var result = "Select a button from above to choose."
 
-hscissors.onload = function(){
+rockpaperscissors.onload = function(){
     draw(rock, paper, scissors, rock, paper, scissors)
 }
 
@@ -46,7 +48,8 @@ function draw(rock, paper, scissors, crock, cpaper, cscissors){
         ctx.font = "30px Arial"
         ctx.textAlign = "center"
         ctx.fillStyle = "black"
-        ctx.fillText("Welcome Press Space to Play", canvas.width/2, 100)
+        ctx.fillText("Press Space to play", canvas.width/2, 100)
+        ctx.drawImage(rockpaperscissors,0,0,1000,600)
         return
     }
     //clear canvas
