@@ -6,7 +6,7 @@ var timer = requestAnimationFrame(main)
 var start = 50
 var finish = 750
 
-//car variable
+//car variables
 var carPos = 2
 var startFuel = randomNumber(canvas.width, 600)
 var fuel = startFuel
@@ -14,7 +14,7 @@ var fuelBarWidth = 300
 var speed = 3
 var gameOver = true
 
-//start timer vairiables
+//start timer variables
 var seconds = 3
 var fps = 60
 var frames = fps
