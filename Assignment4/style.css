@@ -1,7 +1,7 @@
 body{
     display: flex;
     justify-content: center;
-    background-color: #c11f08;
+    background-color: black;
 }
 
 #container{
@@ -12,16 +12,19 @@ body{
 header{
     width:100%;
     height:100px;
+    color: red;
 }
 nav{
     width: 100%;
     height: 50px;
+    color: red;
 }
 article{
     width: 100%;
     height: 300px;
-    border: 1px solid black;
-    background-color: #7ed3f2;
+    border: 1px solid red;
+    background-color: black;
+    color: red;
 
 }
 footer{
@@ -29,6 +32,7 @@ footer{
     height: 100px;
     text-align: center;
     line-height: 100px;
+    color: red;
 }
 
 .game-info{
@@ -38,7 +42,6 @@ footer{
 }
 
 .article-image{
-    border: 2px solid red;
     margin-left: 10px;
 }
 
@@ -70,15 +73,15 @@ footer{
     float:left;
     width: 135px;
     height: 50px;
-    background-color: gray;
+    background-color: black;
     text-decoration: none;
     text-align: center;
     line-height: 50px;
-    color: whitesmoke;
+    color: red;
 }
 
 .btn:hover{
-    background-color: rgb(19,19,19);
-    color: whitesmoke;
+    background-color: red;
+    color: black;
 }
 
