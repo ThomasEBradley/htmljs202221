@@ -14,6 +14,13 @@ var fuelBarWidth = 512
 var speed = 3
 var gameOver = true
 
+//car sprite
+var carSprite = new Image()
+carSprite.src = "images/carsprite.png"
+carSprite.onload = function(){
+    main()
+}
+
 //start timer variables
 var seconds = 3
 var fps = 60
@@ -41,7 +48,7 @@ function main(){
     if(gameOver){
         //Main Menu Screen
         ctx.save()
-        ctx.fillStyle = "black"
+        ctx.fillStyle = "red"
         ctx.font = "30px Arial"
         ctx.textAlign = "center"
         ctx.fillText("Press Space to start", canvas.width/2, canvas.height/2,)
@@ -79,7 +86,7 @@ function main(){
 
 function drawStartFinishLines(){
     //draw start line
-    ctx.fillStyle = "black"
+    ctx.fillStyle = "red"
     ctx.fillRect(start, 50, 10, 500)
     //draw finish line
     ctx.fillRect(finish, 50, 10, 500)
@@ -87,15 +94,16 @@ function drawStartFinishLines(){
 
 function drawCar(){
     //draw car
-    ctx.fillStyle = "red"
-    ctx.fillRect(carPos,canvas.height/2,40,20)
+    //ctx.fillStyle = "red"
+    
+    ctx.drawImage(carSprite, carPos,canvas.height/2,40,20)
 }
 
 function drawFuelBar(){
     var currentBarWidth = fuelBarWidth * (fuel/startFuel)
     ctx.fillStyle = "red"
     ctx.fillRect(start,30, fuelBarWidth, 10)
-    ctx.fillStyle = "black"
+    ctx.fillStyle = "red"
     ctx.font = "25px Arial"
     ctx.fillText("Fuel", start, 25)
     if(fuel>0){
@@ -108,7 +116,7 @@ function drawFuelBar(){
 function drawResults(){
     if(carPos + 40 > finish){
         ctx.save()
-        ctx.fillStyle = "black"
+        ctx.fillStyle = "red"
         ctx.font = "25px Arial"
         ctx.textAlign = "center"
         ctx.fillText("You made it to the finish line... You win!", canvas.width/2, canvas.height/2)
@@ -116,7 +124,7 @@ function drawResults(){
         ctx.restore()
     }else{
         ctx.save()
-        ctx.fillStyle = "black"
+        ctx.fillStyle = "red"
         ctx.font = "25px Arial"
         ctx.textAlign = "center"
         ctx.fillText("You ran out of fuel... You lose!", canvas.width/2, canvas.height/2)
@@ -149,7 +157,7 @@ function drawStartTimer(){
 
     }
     ctx.save()
-    ctx.fillStyle = "black"
+    ctx.fillStyle = "red"
     ctx.font = "30px Arial"
     ctx.textAlign = "center"
     ctx.fillText(seconds, canvas.width/2, canvas.height/2)

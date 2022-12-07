@@ -110,12 +110,27 @@ function pressKeyDown(e) {
             ship.right = true
         }
     }
-    if(gameOver){
-        if(e.keyCode == 32)
-        gameOver = false
-        currentState = 1
-        scoreTimer()
-        main()
+    if (gameOver) {
+        if(e.keyCode == 32){
+            if (currentState == 2) {
+                //from the gameover screen
+                currentState = 0
+                numAsteroids = 20
+                Asteroids = []
+                score = 0
+                gameStart()
+                main()
+            } else {
+                //from the start menu
+                gameStart
+                gameOver = false
+                currentState = 1
+                scoreTimer()
+                main()
+            }
+
+        }
+
     }
 
 }
@@ -185,13 +200,17 @@ function Asteroid() {
 
 }
 
-//for loop to create the first asteroids
-for (var i = 0; i < numAsteroids; i++) {
-    Asteroids[i] = new Asteroid()
-}
-
-
 //utility functions
+
+function gameStart() {
+    //for loop to create the first asteroids
+    for (var i = 0; i < numAsteroids; i++) {
+        Asteroids[i] = new Asteroid()
+    }
+
+    //create new instance of player ship
+    ship = new PlayerShip()
+}
 
 function randomRange(high, low) {
     return Math.random() * (high - low) + low
@@ -201,11 +220,11 @@ function detectCollision(distance, calcDistance) {
     return distance < calcDistance
 }
 
-function scoreTimer(){
-    if(!gameOver){
+function scoreTimer() {
+    if (!gameOver) {
         score++
 
-        if(score % 10 == 0){
+        if (score % 10 == 0) {
             numAsteroids += 10
             console.log(numAsteroids)
         }
@@ -217,19 +236,20 @@ function scoreTimer(){
 
 //state machine
 
-gameState[0] = function(){
+gameState[0] = function () {
+    console.log("Working");
     ctx.save()
     ctx.font = "30px Arial"
     ctx.fillStyle = "white"
     ctx.textAlign = "center"
-    ctx.fillText("Asteroid Avoider", canvas.width/2, canvas.height/2 - 30)
+    ctx.fillText("Asteroid Avoider", canvas.width / 2, canvas.height / 2 - 30)
     ctx.font = "15px Arial"
-    ctx.fillText("Press Space to start", canvas.width/2, canvas.height/2 + 20)
+    ctx.fillText("Press Space to start", canvas.width / 2, canvas.height / 2 + 20)
     ctx.restore()
 }
 
 //game scene
-gameState[1] = function(){
+gameState[1] = function () {
     //draw score to canvas
     ctx.save()
     ctx.font = "15px Arial"
@@ -258,8 +278,11 @@ gameState[1] = function(){
         var dY = ship.y - Asteroids[i].y
         var distance = Math.sqrt((dX * dX) + (dY * dY))
 
+        //collision detection
         if (detectCollision(distance, (ship.height / 2 + Asteroids[i].radius))) {
             gameOver = true
+            currentState = 2
+            main()
         }
 
         if (Asteroids[i].y > canvas.height + Asteroids[i].radius) {
@@ -278,25 +301,55 @@ gameState[1] = function(){
     ship.drawShip()
 
     //check if we need to add more asteroids
-    while(Asteroids.length < numAsteroids){
+    while (Asteroids.length < numAsteroids) {
         //add and create new astroids in the array
         Asteroids.push(new Asteroid())
     }
 }
 
+//game over menu
+gameState[2] = function () {
+    if(score > highScore){
+        //new high score
+        highScore = score
+        ctx.save()
+    ctx.font = "30px Arial"
+    ctx.fillStyle = "white"
+    ctx.textAlign = "center"
+    ctx.fillText("Game Over your score was : " + score.toString(), canvas.width / 2, canvas.height / 2 - 60)
+    ctx.fillText("Your new High Score is : " + highScore.toString(), canvas.width / 2, canvas.height / 2 - 30)
+    ctx.fillText("New Record" + highScore.toString(), canvas.width / 2, canvas.height / 2)
+    ctx.font = "15px Arial"
+    ctx.fillText("Press Space to play again", canvas.width / 2, canvas.height / 2 + 20)
+    ctx.restore()
+    }else{
+        //regular high score
+        ctx.save()
+    ctx.font = "30px Arial"
+    ctx.fillStyle = "white"
+    ctx.textAlign = "center"
+    ctx.fillText("Game Over your score was: " + score.toString(), canvas.width / 2, canvas.height / 2 - 60)
+    ctx.fillText("Your High Score is: " + highScore.toString(), canvas.width / 2, canvas.height / 2 - 30)
+    ctx.font = "15px Arial"
+    ctx.fillText("Press Space to play again", canvas.width / 2, canvas.height / 2 + 20)
+    ctx.restore()
+    }
+    
+}
+
 //main game loop
-function main(){
+function main() {
     //clears canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-
+    
     gameState[currentState]
-
+    console.log(currentState);
     if (!gameOver) {
         timer = requestAnimationFrame(main)
     }
 
     //check if we need to add more asteroids
-    while(Asteroids.length < numAsteroids){
+    while (Asteroids.length < numAsteroids) {
         //add and create new astroids in the array
         Asteroids.push(new Asteroid())
     }
