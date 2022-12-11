@@ -5,19 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Asteroid Avoider</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap'); </style>
     <style>
         html,body{
             display: flex;
             justify-content: center;
-            background-color: black;
+            background-image: url(images/dreamchaser.png);
         }
         #canvas{
             border: 1px solid blue;
         }
+        #container{
+            background-color: black;
+        }
+        header{
+            font-family: 'Comfortaa', cursive;
+            color: white;
+        }
+        footer{
+            font-family: 'Comfortaa', cursive;
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <div id="container">
     <canvas id="canvas" width="1000" height="800"></canvas>
     <script src="AsteroidAvoider.js"></script>
+    <header>
+        <h1>Asteroid Avoider</h1>
+    </header>
+    <footer>
+        <p>&copy;2022 | Thomas Bradley | HTML/JavaScript Class</p>
+    </footer>
+    </div>
 </body>
 </html>

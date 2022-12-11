@@ -10,6 +10,17 @@ var currentState = 0
 var score = 0
 var highScore = 0
 
+//menu screens
+var mainMenu = new Image()
+var endScreen = new Image()
+mainMenu.src = "images/spaceshuttle.png"
+endScreen.src = "images/starrysky.jpg"
+
+//sprites
+var shipSprite = new Image()
+var asteroidSprite = new Image()
+shipSprite.src = "images/spaceship.png"
+shipSprite.src = "images/asteroid.png"
 
 //utility functions
 function randomRange(high, low){
@@ -74,7 +85,7 @@ function pressKeyDown(e){
         //checking for spacebar
         if(e.keyCode == 32){
             if(currentState == 2){
-                //game over screen reatarts game
+                //game over screen restarts game
                 currentState = 0
                 //resets number of asteroids
                 numAsteroids = 20
@@ -200,11 +211,11 @@ function PlayerShip(){
 //Main Screen
 gameStates[0] = function(){
     ctx.save()
-    ctx.font = "30px Arial"
+    ctx.font = "30px Comfortaa"
     ctx.fillStyle = "white"
     ctx.textAlign = "center"
     ctx.fillText("Asteroid Avoider", canvas.width/2, canvas.height/2-30)
-    ctx.font = "15px Arial"
+    ctx.font = "15px Comfortaa"
     ctx.fillText("Press Space to Start", canvas.width/2, canvas.height/2 + 20)
     ctx.restore()
 
@@ -214,7 +225,7 @@ gameStates[0] = function(){
 gameStates[1] = function(){
     //code for displaying score
     ctx.save()
-    ctx.font = "15px Arial"
+    ctx.font = "15px Comfortaa"
     ctx.fillStyle = "white"
     ctx.fillText("Score: " + score.toString(), canvas.width - 150, 30)
     ctx.restore()
@@ -275,25 +286,25 @@ gameStates[2] = function(){
         //set a new high score
         highScore = score
         ctx.save()
-        ctx.font = "30px Arial"
+        ctx.font = "30px Comfortaa"
         ctx.fillStyle = "white"
         ctx.textAlign = "center"
         ctx.fillText("Game Over, your high score score was: " + score.toString() , canvas.width/2, canvas.height/2-60)
         ctx.fillText("Your new high score is: " + highScore.toString() , canvas.width/2, canvas.height/2-30)
         ctx.fillText("New Record", canvas.width/2, canvas.height/2)
-        ctx.font = "15px Arial"
+        ctx.font = "15px Comfortaa"
         ctx.fillText("Press Space to Play Again", canvas.width/2, canvas.height/2 + 20)
         ctx.restore()
 
     }else{
         //keep same score new high score
         ctx.save()
-        ctx.font = "30px Arial"
+        ctx.font = "30px Comfortaa"
         ctx.fillStyle = "white"
         ctx.textAlign = "center"
         ctx.fillText("Game Over, your score was: " + score.toString() , canvas.width/2, canvas.height/2-60)
         ctx.fillText("Your high score is: " + highScore.toString() , canvas.width/2, canvas.height/2-30)
-        ctx.font = "15px Arial"
+        ctx.font = "15px Comfortaa"
         ctx.fillText("Press Space to Play Again", canvas.width/2, canvas.height/2 + 20)
         ctx.restore()
     }
