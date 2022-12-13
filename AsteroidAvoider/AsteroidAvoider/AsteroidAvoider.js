@@ -11,16 +11,24 @@ var score = 0
 var highScore = 0
 
 //menu screens
-var mainMenu = new Image()
 var endScreen = new Image()
-mainMenu.src = "images/spaceshuttle.png"
-endScreen.src = "images/starrysky.jpg"
+var mainMenu = new Image()
+endScreen.src = "images/spaceshuttle.png"
+mainMenu.src = "images/starrysky.jpg"
 
 //sprites
 var shipSprite = new Image()
 var asteroidSprite = new Image()
 shipSprite.src = "images/spaceship.png"
-shipSprite.src = "images/asteroid.png"
+asteroidSprite.src = "images/asteroid.png"
+
+mainMenu.onload = function(){
+    main()
+}
+
+endScreen.onload = function(){
+    main()
+}
 
 //utility functions
 function randomRange(high, low){
@@ -52,6 +60,7 @@ function Asteroid(){
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, true)
         ctx.closePath()
         ctx.fill()
+        ctx.drawImage(asteroidSprite, this.x - this.radius, this.y-this.radius, this.radius + this.radius, this.radius + this.radius)
         ctx.restore()
 
     }
@@ -168,14 +177,7 @@ function PlayerShip(){
             ctx.restore()
 
         }
-        ctx.fillStyle = "red"
-        ctx.beginPath()
-        ctx.moveTo(0, -10)
-        ctx.lineTo(10, 10)
-        ctx.lineTo(-10, 10)
-        ctx.lineTo(0, -10)
-        ctx.closePath()
-        ctx.fill();
+        ctx.drawImage(shipSprite, -this.w/2, -this.h/2, this.w , this.h)
         ctx.restore() 
     }
 
@@ -211,6 +213,7 @@ function PlayerShip(){
 //Main Screen
 gameStates[0] = function(){
     ctx.save()
+    ctx.drawImage(mainMenu, 0, 0, canvas.width, canvas.height)
     ctx.font = "30px Comfortaa"
     ctx.fillStyle = "white"
     ctx.textAlign = "center"
@@ -286,6 +289,7 @@ gameStates[2] = function(){
         //set a new high score
         highScore = score
         ctx.save()
+        ctx.drawImage(endScreen, 0, 0, canvas.width, canvas.height)
         ctx.font = "30px Comfortaa"
         ctx.fillStyle = "white"
         ctx.textAlign = "center"
@@ -299,6 +303,7 @@ gameStates[2] = function(){
     }else{
         //keep same score new high score
         ctx.save()
+        ctx.drawImage(endScreen, 0, 0, canvas.width, canvas.height)
         ctx.font = "30px Comfortaa"
         ctx.fillStyle = "white"
         ctx.textAlign = "center"
