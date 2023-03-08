@@ -25,7 +25,7 @@ var playerData ={
 		//The idle animation 
     	idle:
 		{
-			fps:15,
+			fps:30,
 			cycle:true,
 			frames:
 			[
@@ -36,7 +36,7 @@ var playerData ={
 		//The walwidth:128, height:128,
 		walk:
 		{
-			fps:1,
+			fps:30,
 			cycle:true,
 			frames:
 			[
@@ -67,7 +67,7 @@ var playerData ={
 		//The attack animation 
 		attack:
 		{
-			fps:3,
+			fps:30,
 			cycle:false,
 			//width:300,
 			frames:
