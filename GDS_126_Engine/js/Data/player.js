@@ -75,6 +75,17 @@ var playerData ={
 				{width:512, height:512, startX:0, startY:0},
 				{width:512, height:512, startX:512, startY:0}
 			]
+		},
+		shoot:
+		{
+			fps:30,
+			cycle:false,
+			//width:300,
+			frames:
+			[
+				{width:512, height:512, startX:0, startY:0},
+				{width:512, height:512, startX:4096, startY:0}
+			]
 		}
 	}
 		
