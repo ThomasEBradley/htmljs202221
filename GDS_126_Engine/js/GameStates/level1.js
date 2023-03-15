@@ -15,6 +15,7 @@ ground.img.src=`images/ground.png`
 
 //A platform
 var plat = new GameObject({width:256, height:64,y:canvas.height-200, color:"green"})
+plat.img.src='images/Bradley_Platform.png'
 
 //A level object when it is moved other objects move with it.
 var level = new GameObject({x:0,y:0});
@@ -273,12 +274,18 @@ gameStates[`level1`] = function()
 
 	//renders the midground
 	bg.drawStaticImage([0,0]);
+
+
 	
 	//alternate methd for rendering the repeating background
 	//rbg.render(`drawStaticImage`, [0,0])
 
 	//renders the objects in the rect group
 	rects.render(`drawRect`, [0,0,100,100])
+
+		//renders the platform
+
+	plat.drawStaticImage([-plat.width/2,-plat.height/2]);
 	
 	/*----Used for debugging----*/
 	/*context.beginPath()
