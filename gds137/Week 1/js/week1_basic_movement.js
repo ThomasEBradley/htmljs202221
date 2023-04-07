@@ -13,6 +13,7 @@ var player;
 	
 	//Instantiate the Player
 	player = new Player();
+	player.vx = 2;
 	
 	//Set the Animation Timer
 	timer = setInterval(animate, interval);
@@ -23,8 +24,20 @@ function animate()
 	context.clearRect(0,0,canvas.width, canvas.height);	
 	
 	//Move the Player
-	player.x += 2;
+	player.x += player.vx;
+
+	if(player.x > canvas.width - player.width/2)
+	{
+		player.x = canvas.width - player.width/2
+		player.vx = -player.vx;	
+	}
 	
+	else if(player.x < 0 + player.width/2)
+	{
+		player.x = 0 + player.width/2
+		player.vx = -player.vx;	
+	}
+
 	//Update the Screen
 	player.draw();
 }
