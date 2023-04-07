@@ -33,7 +33,7 @@ function Player()
 	//This changes the player's position
 	this.move = function()
 	{
-		//this.x += this.vx;
-		//this.y += this.vy;
+		this.x += this.vx;
+		this.y += this.vy;
 	}
 }
