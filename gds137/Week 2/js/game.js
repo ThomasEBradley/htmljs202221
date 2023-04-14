@@ -6,17 +6,21 @@ var timer;
 //1000 ms or 1 second / FPS
 var interval = 1000/60;
 var player;
+var player2;
 var ball;
 
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 	
-	//Instantiate the Player
+	//Instantiate the Players
 	player = new GameObject();
+	player2 = new GameObject();
 
 	player.x = -5
+	player2.x = 1029
 	player.width = 25
+	player2.width = 25
 
 	ball = new GameObject();
 
@@ -32,7 +36,7 @@ function animate()
 	context.clearRect(0,0,canvas.width, canvas.height);	
 	
 	
-	//Move the Player up and down
+	//Move the Players up and down
 	if(w)
 	{
 		player.y += -5;
@@ -41,19 +45,37 @@ function animate()
 	{
 		player.y += 5;
 	}
+	if(upArrow)
+	{
+		player2.y += -5;
+	}
+	if(downArrow)
+	{
+		player2.y += 5;
+	}
 
-	//Top Boundary for Player
+	//Top Boundary for Players
 	if(player.y < 0 + player.height/2)
 	{
 		player.y = 0 + player.height/2
 		player.vy = -player.vy;	
 	}
+	if(player2.y < 0 + player.height/2)
+	{
+		player2.y = 0 + player.height/2
+		player2.vy = -player.vy;	
+	}
 
-	//Bottom Boundary for Player
+	//Bottom Boundary for Players
 	else if(player.y > canvas.height - player.height/2)
 	{
 		player.y = canvas.height - player.height/2
 		player.vy = -player.vy;
+	}
+	else if(player2.y > canvas.height - player2.height/2)
+	{
+		player2.y = canvas.height - player2.height/2
+		player2.vy = -player2.vy;
 	}
 
 		//Move the Ball
@@ -61,10 +83,12 @@ function animate()
 		ball.y += ball.vy;
 	
 		//Right Boundary for Ball
-		if(ball.x > canvas.width - ball.width/2)
+		if(ball.x > canvas.width)
 		{
-			ball.x = canvas.width - ball.width/2
-			ball.vx = -ball.vx;	
+			//ball.x = canvas.width - ball.width/2
+			//ball.vx = -ball.vx;
+			ball.x = canvas.width/2
+			ball.y = canvas.height/2	
 		}
 		
 		//Left Boundary for Ball
@@ -107,10 +131,30 @@ function animate()
 	{
 		player.color = "#00ff00";
 	}
+
+	if(ball.hitTestObject(player2))
+	{
+		//change color
+		player2.color = "yellow";
+		ball.vx = -ball.vx;
+		ball.x = player2.x - player2.width/2 - ball.width/2;
+		//Advanced Collision
+		if (ball.y < player2.y - player2.height/6) {
+			ball.vy = -4
+		}
+		else if(ball.y > player2.y + player2.height/6) {
+			ball.vy = 4
+		}
+	}
+	else
+	{
+		player2.color = "#00ff00";
+	}
 	
 	
 	//Update the Screen
 	player.drawRect();
+	player2.drawRect();
 	ball.drawCircle();
 }
 
