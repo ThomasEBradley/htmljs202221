@@ -11,6 +11,9 @@ var ball;
 var p1Wins = 0;
 var p2Wins = 0;
 
+//Ric Flair for some reason
+var img=document.getElementById("ric");
+
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
@@ -35,7 +38,7 @@ var p2Wins = 0;
 function animate()
 {
 	//Erase the Screen
-	context.clearRect(0,0,canvas.width, canvas.height);	
+	context.clearRect(0,0,canvas.width, canvas.height);
 	
 	
 	//Move the Players up and down
@@ -155,22 +158,32 @@ function animate()
 		player2.color = "#00ff00";
 	}
 
-	//Player score text
+	//Line at the center of the screen
+	context.save();
+	context.strokeStyle = "yellow";
+	context.beginPath();
+	context.moveTo(canvas.width/2, 0)
+	context.lineTo(canvas.width/2, canvas.height)
+	context.closePath();
+	context.lineWidth = 20;
+	context.stroke();
+	context.restore();
 
-	
+	//Player score text
 		context.font = "20px Georgia";
-		context.fillText("Player 1 | Player 2", canvas.width/2 - 55, 50)
-		context.fillText(p1Wins, canvas.width/2, 80)
-		context.fillText("-", canvas.width/2 + 19, 80)
-		context.fillText(p2Wins, canvas.width/2 + 35, 80)
-		
-		
-	
+		context.fillText("Player 1 | Player 2", canvas.width/2 - 77.5, 50)
+		context.fillText(p1Wins, canvas.width/2 - 30, 80)
+		context.fillText("-", canvas.width/2 - 4, 80)
+		context.fillText(p2Wins, canvas.width/2 + 18, 80)
+
+	//Draw Ric Flair image
+	context.drawImage(img, ball.x - ball.width/2, ball.y - ball.height/2, ball.width, ball.height);
+
 	
 	
 	//Update the Screen
 	player.drawRect();
 	player2.drawRect();
-	ball.drawCircle();
+	//ball.drawCircle();
 }
 
