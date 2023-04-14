@@ -8,10 +8,12 @@ var interval = 1000/60;
 var player;
 var player2;
 var ball;
+var p1Wins = 0;
+var p2Wins = 0;
 
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
-	context = canvas.getContext("2d");	
+	context = canvas.getContext("2d");
 	
 	//Instantiate the Players
 	player = new GameObject();
@@ -88,7 +90,8 @@ function animate()
 			//ball.x = canvas.width - ball.width/2
 			//ball.vx = -ball.vx;
 			ball.x = canvas.width/2
-			ball.y = canvas.height/2	
+			ball.y = canvas.height/2
+			p1Wins = p1Wins + 1	
 		}
 		
 		//Left Boundary for Ball
@@ -96,6 +99,7 @@ function animate()
 		{
 			ball.x = canvas.width/2
 			ball.y = canvas.height/2
+			p2Wins = p2Wins + 1
 		}
 	
 		//Top Boundary for Ball
@@ -150,6 +154,18 @@ function animate()
 	{
 		player2.color = "#00ff00";
 	}
+
+	//Player score text
+
+	
+		context.font = "20px Georgia";
+		context.fillText("Player 1 | Player 2", canvas.width/2 - 55, 50)
+		context.fillText(p1Wins, canvas.width/2, 80)
+		context.fillText("-", canvas.width/2 + 19, 80)
+		context.fillText(p2Wins, canvas.width/2 + 35, 80)
+		
+		
+	
 	
 	
 	//Update the Screen
