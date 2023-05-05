@@ -95,7 +95,7 @@ function animate()
 	
 	
 
-	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0 )
+	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0 && s == false)
 	{
 		player.canJump = true;
 		player.y--;
