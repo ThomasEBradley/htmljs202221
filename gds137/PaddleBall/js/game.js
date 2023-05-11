@@ -63,7 +63,7 @@ function animate()
 		player.vx = 0
 	}
 
-	//Right Boundary for Players
+	//Right Boundary for Player
 	else if(player.x > canvas.width - player.width/2)
 	{
 		player.x = canvas.width - player.width/2
