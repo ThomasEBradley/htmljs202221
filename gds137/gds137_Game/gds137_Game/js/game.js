@@ -119,8 +119,12 @@ function animate()
 	if(projectile.hitTestPoint(enemy))
 	{
 		enemy.x = 10000
-	}
 
+		context.font = "24px Arial";
+		context.fillStyle = "red";
+		context.textAlign = "center";
+		context.fillText("YO JAY GET SOME BITCHES", canvas.width/2, canvas.height/2);
+	}
 
 	//Show hit points
 	player.drawRect();
