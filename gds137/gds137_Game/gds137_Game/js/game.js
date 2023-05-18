@@ -119,7 +119,10 @@ function animate()
 	if(projectile.hitTestPoint(enemy))
 	{
 		enemy.x = 10000
+	}
 
+	if(enemy.x > canvas.width)
+	{
 		context.font = "24px Arial";
 		context.fillStyle = "red";
 		context.textAlign = "center";
