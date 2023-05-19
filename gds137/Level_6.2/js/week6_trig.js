@@ -51,7 +51,31 @@ function animate()
 	//--------------------------------------------------------------------------------------------------------------------------
 	//------------------------------------------------------END OF INSTRUCTIONS-------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------
-	
+
+			//Get the displacement of the follower from the player
+			var dx = player.x - pearl.x;
+			var dy = player.y - pearl.y;
+		
+			//Not using this in this function but...
+			//This is the Pythagorean Theorem and gets the hypoteneuse of a triangle.
+			//This can be used to get the actual distance between two points.
+			var dist = Math.sqrt(dx * dx + dy * dy);
+		
+
+
+	if (dist <= 300)
+	{
+		pearl.x += dx /25;
+		pearl.y += dy /25;
+	}
+
+	if (pearl.hitTestPoint(player))
+	{
+		pearl.x = 10000
+		pearl.y = 10000
+		pearl.dist = 10000
+	}
+
 	player.drawTriangle();
 	pearl.drawCircle();
 }
@@ -104,21 +128,5 @@ function angularMovement()
 	
 	//move player
 	player.move();
-
-	if(pearl.x == player.x - 300 && pearl.x == player.x + 300 && pearl.y == player.y - 300 && pearl.y == player.y + 300)
-	{
-			//Get the displacement of the follower from the player
-			var dx = player.x - pearl.x;
-			var dy = player.y - pearl.y;
-		
-			//Not using this in this function but...
-			//This is the Pythagorean Theorem and gets the hypoteneuse of a triangle.
-			//This can be used to get the actual distance between two points.
-			var dist = Math.sqrt(dx * dx + dy * dy);
-		
-			pearl.x += dx /25;
-			pearl.y += dy /25;
-	}
-
 }
 

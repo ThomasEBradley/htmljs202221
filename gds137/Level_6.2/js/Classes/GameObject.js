@@ -11,6 +11,8 @@ function GameObject(obj)
 		this.ay = 1;
 		this.vx = 0;
 		this.vy = 0;
+		this.dx = 0
+		this.dy = 0
 		
 		//the angle that the graphic is drawn facing.
 		this.angle = 0;
