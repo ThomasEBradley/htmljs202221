@@ -7,6 +7,7 @@ var interval;
 var player;
 var enemy;
 var projectile;
+var laserbeam;
 
 
 	canvas = document.getElementById("canvas");
@@ -17,7 +18,9 @@ var projectile;
 	enemy = new GameObject({x:canvas.width/2, y:canvas.height/2-100});
 
 	projectile = new GameObject({width:40, height:10, x:-3000, y:-300})
-		
+	
+	laserbeam = new GameObject({width:player.width, height:30, x:-3000, y:-300})
+
 	//goal = new GameObject({width:24, height:50, x:canvas.width-50, y:100, color:"#00ffff"});	
 
 	var fX = .85;
@@ -56,6 +59,12 @@ function animate()
 		projectile.y = player.y
 		projectile.vx = 5
 	}
+	if(q)
+	{
+		laserbeam.x = player.x
+		laserbeam.y = player.y
+		laserbeam.vx = 10
+	}
 
 	player.vx *= fX;
 	player.vy *= fY;
@@ -65,6 +74,9 @@ function animate()
 
 	projectile.x += Math.round(projectile.vx);
 	projectile.y += Math.round(projectile.vy);
+
+	laserbeam.x += Math.round(laserbeam.vx);
+	laserbeam.y += Math.round(laserbeam.vy);
 
 	//Left Boundary for Player
 	if(player.x < 0 + player.width/2)
@@ -121,6 +133,11 @@ function animate()
 		enemy.x = 10000
 	}
 
+	if(laserbeam.hitTestPoint(enemy))
+	{
+		enemy.x = 10000
+	}
+
 	if(enemy.x > canvas.width)
 	{
 		context.font = "24px Arial";
@@ -132,8 +149,10 @@ function animate()
 	//Show hit points
 	player.drawRect();
 
-	enemy.drawRect()
+	enemy.drawRect();
 
-	projectile.drawRect()
+	projectile.drawRect();
+
+	laserbeam.drawRect();
 }
 
